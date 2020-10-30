@@ -56,8 +56,8 @@
 #define ADAFRUIT_114_TFT_BITDEPTH 16
 #define ADAFRUIT_114_TFT_WIDTH 240
 #define ADAFRUIT_114_TFT_HEIGHT 135
-#define ADAFRUIT_114_TFT_OFFSET_X 0
-#define ADAFRUIT_114_TFT_OFFSET_Y 0
+#define ADAFRUIT_114_TFT_OFFSET_X 40
+#define ADAFRUIT_114_TFT_OFFSET_Y 52
 
 
 static const char * ADAFRUIT_114_TFT_TAG = "adafruit_114_tft";
@@ -141,14 +141,14 @@ static void common_init(
         (
           //ST7789_CFG_MIRROR_X |
           //ST7789_CFG_MIRROR_Y |
-          //ST7789_CFG_EXCHANGE_XY
+          ST7789_CFG_EXCHANGE_XY
           // ST7789_CFG_REFRESH_RTL
           // ST7789_CFG_REFRESH_BTT
-          ST7789_CFG_BGR
+          //ST7789_CFG_BGR
         )
     );
     ESP_ERROR_CHECK(ret);
-    ret = st7789_invon(device);
+    ret = st7789_invon(device); // hack for proper color
     ESP_ERROR_CHECK(ret);
     ret = st7789_noron(device);
     ESP_ERROR_CHECK(ret);
